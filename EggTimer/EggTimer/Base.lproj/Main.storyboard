@@ -131,9 +131,25 @@
                                                 <color key="progressTintColor" systemColor="systemOrangeColor"/>
                                                 <color key="trackTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </progressView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZjT-84-CZX">
+                                                <rect key="frame" x="100" y="175.5" width="174" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Reset timer">
+                                                    <fontDescription key="titleFontDescription" type="italicSystem" pointSize="20"/>
+                                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VTg-pM-N1x"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="ZjT-84-CZX" firstAttribute="centerX" secondItem="nJN-th-c5K" secondAttribute="centerX" id="6wC-Sh-MLf"/>
+                                            <constraint firstItem="ZjT-84-CZX" firstAttribute="top" secondItem="32L-aZ-fws" secondAttribute="bottom" constant="50" id="C33-Br-FxP"/>
+                                            <constraint firstItem="ZjT-84-CZX" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" constant="100" id="F7q-0a-mnc"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZjT-84-CZX" secondAttribute="trailing" constant="100" id="Fds-xK-zjf"/>
                                             <constraint firstAttribute="trailing" secondItem="32L-aZ-fws" secondAttribute="trailing" id="JLl-Lw-vqa"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZjT-84-CZX" secondAttribute="bottom" constant="40" id="keT-1g-5Ke"/>
                                             <constraint firstItem="32L-aZ-fws" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="kr5-uD-v4N"/>
                                             <constraint firstItem="32L-aZ-fws" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="mVM-vO-e9f"/>
                                         </constraints>
@@ -166,6 +182,9 @@
         <image name="soft_egg" width="287" height="365"/>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
