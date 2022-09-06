@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Calculate View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BMI_Calculator_LayoutPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CalculateViewController" customModule="BMI_Calculator_LayoutPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qUp-Sb-lWB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,25 +120,26 @@
                         <outlet property="heightSlider" destination="QqB-i1-KxK" id="zWL-Wp-4bI"/>
                         <outlet property="weightLabel" destination="YIh-Wr-wDN" id="x1r-bp-Kzw"/>
                         <outlet property="weightSlider" destination="JIH-Nr-5Rb" id="sP5-IX-bHU"/>
+                        <segue destination="kfb-Mg-Tzx" kind="presentation" identifier="goToResult" id="aXq-cg-OEb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Result View Controller-->
         <scene sceneID="ovQ-Dk-g0E">
             <objects>
-                <viewController id="kfb-Mg-Tzx" sceneMemberID="viewController">
+                <viewController id="kfb-Mg-Tzx" customClass="ResultViewController" customModule="BMI_Calculator_LayoutPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HHh-MX-RY3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="result_background" translatesAutoresizingMaskIntoConstraints="NO" id="OwB-Gr-By2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ser-cU-ZTK">
-                                <rect key="frame" x="89" y="357.5" width="236" height="181.5"/>
+                                <rect key="frame" x="89" y="330.5" width="236" height="181.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="749" text="YOUR RESULT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2C-4m-RrR">
                                         <rect key="frame" x="2" y="0.0" width="232" height="42"/>
@@ -161,10 +162,11 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibP-cv-4yW">
-                                <rect key="frame" x="20" y="816" width="133" height="50"/>
+                                <rect key="frame" x="12" y="792" width="390" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="j8f-Di-ZXD"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="4E5-re-582"/>
+                                    <constraint firstAttribute="height" constant="50" id="a3E-8q-vuJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="RECALCULATE">
@@ -176,22 +178,30 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recalculatePressed:" destination="kfb-Mg-Tzx" eventType="touchUpInside" id="BhJ-e3-5zw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uhj-wm-fzz"/>
                         <color key="backgroundColor" red="0.19980379940000001" green="0.48169642689999997" blue="0.77313679459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OwB-Gr-By2" secondAttribute="trailing" id="9Lv-aS-0oQ"/>
-                            <constraint firstAttribute="bottom" secondItem="OwB-Gr-By2" secondAttribute="bottom" id="GNe-DQ-G3i"/>
-                            <constraint firstItem="uhj-wm-fzz" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ibP-cv-4yW" secondAttribute="trailing" symbolic="YES" id="Iso-78-BQb"/>
-                            <constraint firstItem="OwB-Gr-By2" firstAttribute="leading" secondItem="HHh-MX-RY3" secondAttribute="leading" id="SaD-jl-w6J"/>
-                            <constraint firstItem="ibP-cv-4yW" firstAttribute="leading" secondItem="HHh-MX-RY3" secondAttribute="leadingMargin" id="YMR-pV-UPt"/>
-                            <constraint firstItem="ser-cU-ZTK" firstAttribute="centerX" secondItem="HHh-MX-RY3" secondAttribute="centerX" id="jID-tu-KG9"/>
-                            <constraint firstItem="ser-cU-ZTK" firstAttribute="centerY" secondItem="HHh-MX-RY3" secondAttribute="centerY" id="nJB-vI-rvR"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="ibP-cv-4yW" secondAttribute="bottom" constant="-4" id="qge-mX-WJz"/>
-                            <constraint firstItem="OwB-Gr-By2" firstAttribute="top" secondItem="HHh-MX-RY3" secondAttribute="top" id="tZO-h6-eZU"/>
+                            <constraint firstItem="uhj-wm-fzz" firstAttribute="bottom" secondItem="ibP-cv-4yW" secondAttribute="bottom" id="7CM-RL-72s"/>
+                            <constraint firstItem="uhj-wm-fzz" firstAttribute="trailing" secondItem="ibP-cv-4yW" secondAttribute="trailingMargin" constant="20" id="Fnc-no-8PF"/>
+                            <constraint firstItem="ibP-cv-4yW" firstAttribute="centerX" secondItem="HHh-MX-RY3" secondAttribute="centerX" id="Mmb-nk-pXk"/>
+                            <constraint firstItem="ser-cU-ZTK" firstAttribute="centerX" secondItem="HHh-MX-RY3" secondAttribute="centerX" id="NG9-Ad-gQq"/>
+                            <constraint firstItem="ibP-cv-4yW" firstAttribute="leadingMargin" secondItem="uhj-wm-fzz" secondAttribute="leading" constant="20" id="YZQ-Ub-oKR"/>
+                            <constraint firstAttribute="trailing" secondItem="OwB-Gr-By2" secondAttribute="trailing" id="beH-jN-LuE"/>
+                            <constraint firstItem="OwB-Gr-By2" firstAttribute="top" secondItem="HHh-MX-RY3" secondAttribute="top" id="ihX-ih-ZUN"/>
+                            <constraint firstItem="ser-cU-ZTK" firstAttribute="centerY" secondItem="HHh-MX-RY3" secondAttribute="centerY" id="oVv-XR-zAO"/>
+                            <constraint firstItem="OwB-Gr-By2" firstAttribute="leading" secondItem="HHh-MX-RY3" secondAttribute="leading" id="uHu-Pw-wb5"/>
+                            <constraint firstAttribute="bottom" secondItem="OwB-Gr-By2" secondAttribute="bottom" id="wtD-l3-vWH"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="adviceLabel" destination="wL7-Mk-scd" id="nP8-Tw-OYn"/>
+                        <outlet property="bmiLabel" destination="hWo-gc-8p7" id="iCW-bI-bPW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELc-Va-I6V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
