@@ -44,17 +44,17 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     // what should happen when row is chosen
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCurrency = coinManager.currencyArray[row]
-//        print(coinManager.getCoinPrice(for: selectedCurrency))
-        coinManager.fetchRate(for: selectedCurrency)
+        coinManager.getCoinPrice(for: selectedCurrency)
     }
     
 }
 
+//MARK: - CoinManagerDelegate
 extension ViewController: CoinManagerDelegate {
-    func didUpdateWeather(_ coinManager: CoinManager, coinModel: CoinModel) {
+    func didUpdatePrice(_ coinManager: CoinManager, price: String, currency: String) {
         DispatchQueue.main.async {
-            self.currencyLabel.text = coinModel.fiatName
-            self.bitcoinLabel.text = coinModel.currencyRate
+            self.currencyLabel.text = currency
+            self.bitcoinLabel.text = price
         }
     }
     

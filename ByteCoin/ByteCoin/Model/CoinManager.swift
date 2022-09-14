@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CoinManagerDelegate {
-    func didUpdateWeather(_ coinManager: CoinManager, coinModel: CoinModel)
+    func didUpdatePrice(_ coinManager: CoinManager, price: String, currency: String)
     func didFailWithError(error: Error)
 }
 
@@ -22,50 +22,38 @@ struct CoinManager {
     
     var delegate: CoinManagerDelegate?
     
-    func fetchRate(for currency: String) {
+    func getCoinPrice(for currency: String) {
         let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
-        performRequest(with: urlString)
-    }
-    
-    func performRequest(with urlString: String) {
+        
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
-                
                 if error != nil {
                     delegate?.didFailWithError(error: error!)
                     print("No data")
                     return
                 }
-                
                 if let safeData = data {
-                    if let coinModel = self.parseJSON(safeData) {
-                        delegate?.didUpdateWeather(self, coinModel: coinModel)
+                    if let price = self.parseJSON(safeData) {
+                        let priceString = String(format: "%.2f", price)
+                        delegate?.didUpdatePrice(self, price: priceString, currency: currency)
                     }
                 }
-                
             }
-            
             task.resume()
         }
     }
     
-    func parseJSON(_ coindData: Data) -> CoinModel? {
+    func parseJSON(_ coindData: Data) -> Double? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(CoinData.self, from: coindData)
-            let rate = decodedData.rate
-            let rateString = String(format: "%.2f", rate)
-            let fiat = decodedData.asset_id_quote
-            let coinModel = CoinModel(currencyRate: rateString, fiatName: fiat)
-            return coinModel
-            
+            let priceData = decodedData.rate
+            return priceData
         } catch {
             delegate?.didFailWithError(error: error)
             return nil
         }
-        
     }
-    
     
 }
